@@ -121,7 +121,7 @@ public class MyLinkedList {
     }
 
     private Node Find(int index){
-        if (index > size){
+        if (index >= size){
             throw new IndexOutOfBoundsException();
         }
         if (index > size/2){
