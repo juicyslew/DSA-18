@@ -1,6 +1,7 @@
 import java.util.*;
 
 import static java.lang.StrictMath.floor;
+import static java.lang.StrictMath.floorMod;
 
 public class Problems {
 
@@ -16,7 +17,7 @@ public class Problems {
 
     public static List<Integer> removeKDigits(int[] A, int k) {
         // For now, return a List that's correct size, but contains only 0s
-        List<Integer> l = new LinkedList<>();
+        LinkedList<Integer> l = new LinkedList<>();
         Stack<Integer> stck = new Stack<>();
         int rmnum = 0;
         for (int i = 0; i < A.length; i++){
@@ -31,12 +32,15 @@ public class Problems {
             stck.pop();
         }
         while (!stck.empty()){
-            l.add(0, stck.pop());
+            l.addFirst(stck.pop());
         }
         return l;
     }
 
     public static boolean isPalindrome(Node n) {
+        if (n == null || n.next == null){
+            return true;
+        }
         Node point = n;
         int size = 1;
         while(point.next != null){
@@ -47,19 +51,26 @@ public class Problems {
         point = n;
         Node tmpf = n.next;
         Node tmpb = null;
-        Node head;
         int i = 0;
         while (i < floor(size/2)){
+            System.out.println("point: " + point.val);
             point.next = tmpb;
             tmpb = point;
             point = tmpf;
             tmpf = tmpf.next;
             i++;
         }
-        head = point;
+        Node head;
+        if (size % 2 == 0) {
+            head = point;
+        }else{
+            head = point.next;
+        }
+        point = tmpb;
 
-        Node tmpb2 = tmpb.next;
+        /*Node tmpb2 = tmpb.next;
         while(true){
+            System.out.println("wow");
             point.next = tmpb;
             point = tmpf;
             if (point == null){
@@ -69,23 +80,23 @@ public class Problems {
             tmpb.next = tmpf;
             tmpb = tmpb2;
             tmpb2 = tmpb2.next;
-        }
-        i = 0;
-        tmpf = point.next;
-        while (point != null){
-            if(point != tmpf){
+        }*/
+        //tmpf = head.next;
+        //System.out.println(head);
+        while (head != null){
+            System.out.println(head.val + " == " + point.val);
+            if(head.val != point.val){
                 return false;
             }
-            point = tmpf.next;
-            tmpf = point.next;
-            i++;
+            head = head.next;
+            point = point.next;
         }
         return true;
     }
 
     public static String infixToPostfix(String s) {
         String[] pieces = s.split(" ");
-        StringBuilder resbuild= new StringBuilder();
+        StringBuilder resbuild = new StringBuilder();
         Stack<String> ops = new Stack<>();
         int opsmax = 1; //if no parens set opsmax to 1, if parens set opsmax to 0;
         //Queue<String> nums = new Queue<>();
