@@ -19,7 +19,7 @@ public class SillyString {
 
     @Override
     public int hashCode() {
-        // TODO What is bad about this hash function??
+        // It doesn't evenly distribute among all real numbers.
         int total = 0;
         for (int i=0; i<innerString.length(); i++) {
             total += innerString.charAt(i);
