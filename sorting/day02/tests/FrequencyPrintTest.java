@@ -12,6 +12,7 @@ public class FrequencyPrintTest {
     public void testFrequencyPrint1() {
         String str = "to be or not to be";
         String re = FrequencyPrint.frequencyPrint(str);
+        System.out.println(re);
         assertStringsHaveEqualsCounts(str, re);
         stringisSorted(re);
     }
