@@ -133,12 +133,20 @@ public class BinarySearchTreeTest {
         Integer[] sorted = sorted(input);
         List<Integer> list = Arrays.asList(sorted);
         list = new ArrayList<>(list);
-        for (int j = 0; j <input.length; j++) {
+        Object[] traversaltest = bst.inOrderTraversal().toArray();
+        for (int i = 0; i < traversaltest.length; i++){
+            System.out.println(traversaltest[i]);
+        }
+        for (int j = 0; j < input.length; j++) {
             int randomNum = ThreadLocalRandom.current().nextInt(input.length-j);
+            System.out.println(list.get(randomNum));
             bst.delete(list.get(randomNum));
             list.remove(randomNum);
             Integer[] expected = Arrays.copyOf(list.toArray(), list.size(), Integer[].class);
             Object[] traversal = bst.inOrderTraversal().toArray();
+            /*for (int i = 0; i < traversal.length; i++){
+                System.out.println(traversal[i]);
+            }*/
             Integer[] received = Arrays.copyOf(traversal, traversal.length, Integer[].class);
             assertArrayEquals(expected, received);
         }

@@ -48,13 +48,26 @@ public class TreeNode<T extends Comparable<T>> {
             n.parent = parent;
     }
 
-    public void moveChildrenFrom(TreeNode<T> n) {
+    /*public void moveChildrenFrom(TreeNode<T> n) {
         leftChild = n.leftChild;
         rightChild = n.rightChild;
         if (leftChild != null)
             leftChild.parent = this;
         if (rightChild != null)
             rightChild.parent = this;
+    }*/
+    public void moveChildrenFrom(TreeNode<T> n) {
+        if (n.leftChild != this){
+            leftChild = n.leftChild;
+            if (leftChild != null)
+                leftChild.parent = this;
+        }
+        if (n.rightChild != this) {
+            rightChild = n.rightChild;
+            if (rightChild != null)
+                rightChild.parent = this;
+        }
+
     }
 
     public boolean equals(TreeNode other) {
