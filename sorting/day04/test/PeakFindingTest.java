@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -17,6 +18,7 @@ public class PeakFindingTest {
     private void isValidTwoDSolution(int[][] arr, int[] sol) {
         boolean valid = true;
         int value = arr[sol[0]][sol[1]];
+        System.out.println(sol[0] + " | " + sol[1] + " : " + value);
         if (sol[0] != 0 && value < arr[sol[0] - 1][sol[1]])
             valid = false;
         if (sol[0] != arr.length - 1 && value < arr[sol[0] + 1][sol[1]])
@@ -25,6 +27,7 @@ public class PeakFindingTest {
             valid = false;
         if (sol[1] != arr[0].length - 1 && value < arr[sol[0]][sol[1] + 1])
             valid = false;
+
         assertTrue(valid);
     }
 

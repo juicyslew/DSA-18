@@ -1,8 +1,8 @@
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class RedBlackTreeTest {
 
@@ -229,13 +229,14 @@ public class RedBlackTreeTest {
 
     @Test
     public void testDelete4() {
+        int somePredefinedSeed = 943493;
         RedBlackTree<Integer> rbt = new RedBlackTree<>();
         List<Integer> input = new ArrayList<>(Arrays.asList(3, 1, 2, 6, 23, 4, 9, 10, 5, 11, 30));
         for (Integer i: input) {
             rbt.add(i);
         }
         List<Integer> removeOrder = new ArrayList<>(input);
-        Collections.shuffle(removeOrder);
+        Collections.shuffle(removeOrder,new Random(somePredefinedSeed));
         for (int i : removeOrder) {
             System.out.println(i);
             input.remove(Integer.valueOf(i));
@@ -264,7 +265,11 @@ public class RedBlackTreeTest {
     @Test
     public void testDelete6() { // This test case breaks our solution. If you have a working delete solution for this case, let us know!
         RedBlackTree<Integer> rbt = new RedBlackTree<>();
+<<<<<<< HEAD
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 5, 0));
+=======
+        List<Integer> input = new ArrayList<>(Arrays.asList(3, 4, 2, 1));
+>>>>>>> 686bd340b4087ed4fed7ca3720fbda758a86a63a
         for (Integer i: input) {
             rbt.add(i);
         }
