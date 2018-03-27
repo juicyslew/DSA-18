@@ -26,9 +26,41 @@ public class Cryptarithmetic {
         return i;
     }
 
+    private static boolean backtrack(String S1, String S2, String Sol, Map<Character, Integer> crypto, LinkedList<Character> charlist){
+
+        if (charlist.isEmpty()){
+            return validSolution(S1, S2, Sol, crypto);
+        }
+        //Iterable<Integer> myOrder = randomOrder();
+        for (int i : randomOrder()){
+            char mychar = charlist.pop();
+            crypto.put(mychar, i);
+            if(backtrack(S1, S2, Sol, crypto, charlist)){
+                //charlist.push(mychar); //doesn't really matter here
+                return true;
+            }
+            charlist.push(mychar);
+        }
+        return false;
+    }
+
+
     public static Map<Character, Integer> solvePuzzle(String S1, String S2, String S3) {
-        // TODO
-        Map<Character, Integer> assignments = new HashMap<>();
-        return assignments;
+        Map<Character, Integer> crypto = new HashMap<>();
+        for (char s : S1.toCharArray()){
+            crypto.put(s, -1);
+        }
+        for (char s : S2.toCharArray()){
+            crypto.put(s, -1);
+        }
+        for (char s : S3.toCharArray()){
+            crypto.put(s, -1);
+        }
+        LinkedList<Character> charlist = new LinkedList<Character>(crypto.keySet());
+        if (backtrack(S1, S2, S3, crypto, charlist)){
+            return crypto;
+        }else{
+            throw new AssertionError("There is no solution");
+        }
     }
 }
