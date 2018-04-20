@@ -52,6 +52,11 @@ public class IndexPQ<Key extends Comparable<Key>> {
         return min;
     }
 
+    public Key peekMin(){
+        if (n == 0) throw new NoSuchElementException("Priority queue underflow");
+        return keys[pq[1]];
+    }
+
 
     public void changeKey(int i, Key key) {
         if (i < 0 || i >= maxN) throw new IllegalArgumentException();
