@@ -15,7 +15,7 @@ public class LongestIncreasingSubsequence {
                 }
             }
         }
-
+        DP[i] = best;
         return best;
     }
 

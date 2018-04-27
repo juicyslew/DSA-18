@@ -1,7 +1,9 @@
 import java.util.*;
 
 public class BarnRepair {
+
     public static int solve(int M, int[] occupied) {
+
         Arrays.sort(occupied);
         PriorityQueue<Integer> SpaceRegions = new PriorityQueue<>();
 

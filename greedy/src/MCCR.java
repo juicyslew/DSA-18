@@ -32,8 +32,6 @@ public class MCCR {
                     }catch(Exception e){ }
                 }
             }
-
-
             return cost;
         }
     }
